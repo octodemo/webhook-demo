@@ -1,0 +1,11 @@
+[Unit]
+Description=Redis queue worker
+Requires=rh-redis5-redis.service
+
+[Service]
+Type=simple
+User=automation
+ExecStart=/opt/glue/worker.py
+
+[Install]
+WantedBy=multi-user.target
