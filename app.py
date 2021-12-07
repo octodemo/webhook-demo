@@ -23,13 +23,13 @@ q = Queue(connection=conn)
 
 
 # How to run that Docker container
-def run_container(who_to_greet):
+def run_container():
     """
     Runs a Docker container that greets a named user
     """
     container = client.containers.run(
         image='python:3.9',
-        command='python3 -c "print(\'Hello, {}!\')"'.format(who_to_greet),
+        command='python3 -c "print(\'Hello world!\')"',
         detach=True
     )
 
@@ -37,7 +37,6 @@ def run_container(who_to_greet):
 # Do the things
 @app.route('/webhook', methods=['POST'])
 def respond():
-    who_to_greet = request.json["repository"]["owner"]["login"]
-    job = q.enqueue_call(func=run_container, args=([who_to_greet]),
+    job = q.enqueue_call(func=run_container, args=(),
                          result_ttl=5000)
     return Response(status=201)
