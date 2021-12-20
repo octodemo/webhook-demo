@@ -29,7 +29,7 @@ def run_container(who_to_greet):
     """
     container = client.containers.run(
         image='python:3.9',
-        command='python3 -c "print(\'Hello world!\')"'.format(who_to_greet),
+        command='python3 -c "print(\'Hello, {}!\')"'.format(who_to_greet),
         detach=True
     )
 
