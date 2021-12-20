@@ -1,0 +1,32 @@
+name: Weekly scrum
+
+on:
+  schedule:
+    - cron: "0 12 * * 2"  # Tuesday at 12 pm UTC (which is early morning in the US)
+  workflow_dispatch:
+
+jobs:
+  weekly_meeting:
+    name: create new issue
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set Date
+      run: echo "date=$(date -u '+%B %d %Y')" >> $GITHUB_ENV
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Create issue
+      id: issue-bot
+      uses: imjohnbo/issue-bot@v3
+      with:
+        title: "Weekly scrum for ${{ env.date }}"
+        # rotate-assignees: true
+        assignees: "some-natalie"
+        labels: "standup"
+        pinned: true
+        close-previous: true
+        linked-comments: true
+        template: ".github/ISSUE_TEMPLATE/scrum.md"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
