@@ -1,0 +1,30 @@
+version: '3'
+services:
+  flyway:
+    image: flyway/flyway:8
+    command: migrate
+    volumes:
+      - ./sql/migrations:/flyway/sql
+      - ./sql:/flyway/conf
+    depends_on:
+      - database
+  database:
+    image: postgres:14
+    restart: always
+    env_file:
+      ./sql/db.env
+    ports:
+      - 5432:5432
+  redis_cache:
+    image: redis:6
+    restart: always
+    ports:
+      - 6379:6379
+  web:
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - redis_cache
+      - database
+      - flyway
