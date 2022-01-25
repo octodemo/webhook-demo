@@ -21,7 +21,7 @@ jobs:
         docker compose run --rm flyway migrate
     - name: Verify the migrations
       run: |
-        docker-compose run --rm flyway validate
+        docker compose run --rm flyway info
     - name: Remove the docker containers
       run: |
         docker compose stop
