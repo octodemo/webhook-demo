@@ -1,0 +1,25 @@
+name: Test database schema migrations
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - "main"
+    paths:
+    - 'sql/migrations/**'
+
+jobs:
+  flyway-check:
+    name: Validate the Flyway migrations on an empty database
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v2
+    - name: Apply all migrations on empty DB
+      run: |
+        docker compose up -d database
+        docker compose run --rm flyway migrate
+    - name: Remove the docker containers
+      run: |
+        docker compose stop
+        docker compose rm -fv

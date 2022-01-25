@@ -10,7 +10,7 @@ import docker
 from flask import Flask, request, Response
 import requests
 from rq import Queue
-from worker import conn
+from systemd.worker import conn
 
 # Docker instance
 client = docker.from_env()
