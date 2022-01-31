@@ -16,12 +16,7 @@ jobs:
     - name: Check out the code
       uses: actions/checkout@v2
     - name: Apply all migrations on empty DB
-      run: docker compose up -d
-    - name: Wait 5 minutes
-      run: sleep 300
-    - name: Print the flyway logs, if needed
+      run: docker compose up --exit-code-from flyway
+    - name: Print the flyway logs, if needed later
       run: docker compose logs flyway
-    - name: Remove the docker containers
-      run: |
-        docker compose stop
-        docker compose rm -fv
+      if: always()
