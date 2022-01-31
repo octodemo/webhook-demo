@@ -7,7 +7,9 @@ services:
       - ./sql/migrations:/flyway/sql
       - ./sql:/flyway/conf
     depends_on:
-      - database
+      database:
+        condition: service_healthy
+
   database:
     image: postgres:14
     restart: always
@@ -15,11 +17,18 @@ services:
       ./sql/db.env
     ports:
       - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
   redis_cache:
     image: redis:6
     restart: always
     ports:
       - 6379:6379
+
   web:
     build: .
     ports:
