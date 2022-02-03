@@ -1,3 +1,7 @@
+/*
+ * Create a table for a collab changelog proof of concept
+ */
+
 CREATE TABLE public.collab_changelog (
     event_id INT GENERATED ALWAYS AS IDENTITY,
     event_type TEXT NOT NULL,
