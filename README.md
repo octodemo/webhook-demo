@@ -1,8 +1,9 @@
 # Webhook receiver
 
-An example of a webhook receiver using [GitHub Codespaces](https://github.com/features/codespaces)!
+An example of a webhook receiver using [GitHub Codespaces](https://github.com/features/codespaces)!  Check out the [demo](demos.md) guide for a short guided tour.
 
-:warning: Not for production.  May contain out of date dependencies in `requirements.txt`.  Also, it doesn't do anything useful.
+> **Warning**
+> Not for production.  May contain out of date dependencies in `requirements.txt`.  Also, it doesn't do anything useful - but you can probably modify it to do useful stuff on webhook receipt.
 
 ## Real world
 
