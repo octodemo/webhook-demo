@@ -18,7 +18,7 @@ jobs:
       
     - name: Create issue
       id: issue-bot
-      uses: imjohnbo/issue-bot@v2
+      uses: imjohnbo/issue-bot@v3
       with:
         title: "Weekly scrum for ${{ env.date }}"
         # rotate-assignees: true
