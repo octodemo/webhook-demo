@@ -17,7 +17,7 @@ from rq import Queue
 app = Flask(__name__)
 
 # Make instance of redis queue
-q = Queue(connection=Redis(host='redis_cache', port=6379))
+q = Queue(connection=Redis(host="redis_cache", port=6379))
 
 
 # Write the username and repo to the test table
@@ -25,22 +25,27 @@ def write_to_db(username, repo):
     """
     Writes the username, repo, and time to the test table
     """
-    conn = psycopg2.connect("host=database dbname=webhooks user=postgres password=mysecretpassword")
+    conn = psycopg2.connect(
+        "host=database dbname=webhooks user=postgres password=mysecretpassword"
+    )
     cur = conn.cursor()
     try:
-        cur.execute("""
+        cur.execute(
+            """
             INSERT INTO test_webhook (username, target_repo, event_timestamp) 
             VALUES (%s, %s, %s);
-            """, (username, repo, datetime.now()))
+            """,
+            (username, repo, datetime.now()),
+        )
     except psycopg2.Error as e:
-        print('Error: %s', e)
+        print("Error: %s", e)
     conn.commit()
     cur.close()
     conn.close()
 
 
 # Do the things
-@app.route('/webhook', methods=['POST'])
+@app.route("/webhook", methods=["POST"])
 def respond():
     username = request.json["repository"]["owner"]["login"]
     repo = request.json["repository"]["name"]
