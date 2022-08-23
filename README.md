@@ -1,9 +1,9 @@
 # Webhook receiver
 
-An example of a quick and dirty webhook receiver for where you can't use
-`ngrok`, ironically using `ngrok` to demonstrate it on a Mac.  Use [port forwarding](https://docs.github.com/en/codespaces/developing-in-codespaces/forwarding-ports-in-your-codespace) in Codespaces instead.
+An example of a webhook receiver using [GitHub Codespaces](https://github.com/features/codespaces)!  Check out the [demo](demos.md) guide for a short guided tour.
 
-:warning: Not for production.  Contains out of date dependencies in `requirements.txt`.  Also doesn't do anything useful.
+> **Warning**
+> Not for production.  May contain out of date dependencies in `requirements.txt`.  Also, it doesn't do anything useful - but you can probably modify it to do useful stuff on webhook receipt.
 
 ## Real world
 
