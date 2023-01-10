@@ -3,3 +3,4 @@ CREATE TABLE public.collab_changelog (
     event_type TEXT NOT NULL,
     PRIMARY KEY (event_id)
 );
+
