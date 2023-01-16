@@ -1,4 +1,4 @@
 Flask==2.1.2
 psycopg2-binary==2.9.3
 redis==4.3.4
-rq==1.10.1
+rq==1.12.0
