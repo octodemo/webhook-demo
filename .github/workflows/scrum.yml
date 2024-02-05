@@ -14,7 +14,7 @@ jobs:
       run: echo "date=$(date -u '+%B %d %Y')" >> $GITHUB_ENV
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Create issue
       id: issue-bot
