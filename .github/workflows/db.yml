@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out the code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Apply all migrations on empty DB
       run: docker compose up --exit-code-from flyway
     - name: Print the flyway logs, if needed later

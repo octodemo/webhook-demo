@@ -10,7 +10,7 @@ jobs:
     environment: Test
     steps:
     - name: Check out the code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Run migrate
       run: docker-compose run flyway
     - name: Print the flyway logs, if needed later
